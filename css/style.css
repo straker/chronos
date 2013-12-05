@@ -1,0 +1,530 @@
+/**
+ * RESET STYLES
+ */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td {
+    margin:0;
+    padding:0;
+}
+table {
+    border-collapse:collapse;
+    border-spacing:0;
+}
+fieldset,img {
+    border:0;
+}
+address,caption,cite,code,dfn,em,strong,th,var {
+    font-style:normal;
+    font-weight:normal;
+}
+ol,ul {
+    list-style:none;
+}
+caption,th {
+    text-align:left;
+}
+h1,h2,h3,h4,h5,h6 {
+    font-size:100%;
+    font-weight:normal;
+}
+q:before,q:after {
+    content:'';
+}
+abbr,acronym {
+    border:0;
+}
+header, footer, aside, nav, article {
+   display: block;
+}
+img {
+    border: 0;
+    display: block;
+}
+html {
+	font-size: 100%;
+}
+
+/**
+ * BODY STYLES
+ */
+body {
+	cursor: default;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	text-shadow: 2px 2px #000000;
+}
+
+body.mobile {
+	-webkit-transform:rotate(-90deg);
+	-moz-transform:rotate(-90deg);
+	-ms-transform:rotate(-90deg);
+	-o-transform:rotate(-90deg);
+	transform:rotate(-90deg);
+}
+
+h1 {
+	font-size: 110px;
+	font-size: 6.875rem;
+}
+h2 {
+	font-size: 68px;
+	font-size: 4.25rem;
+	text-decoration: underline;
+}
+h3 {
+	font-size: 26px;
+	font-size: 1.625rem;
+}
+
+a {
+	text-decoration: none;
+	color: white;
+}
+a:hover {
+	color: yellow;
+}
+
+strong {
+	font-weight: bold;
+}
+
+.wrapper {
+	margin: 42px 0;
+}
+
+#main-menu, #how-to-screen, #selection-screen, #credits-screen, #options-screen {
+	z-index: 3;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	text-align: center;
+	display: none;
+	background-color: #333;
+}
+
+.canvas-wrapper {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+}
+	.border {
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		margin: auto;
+		background-color: grey;
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		border-radius: 5px;
+	}
+
+/* Menu */
+#menu {
+	z-index: 5;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	margin: auto;
+	background: transparent;
+	display: none;
+}
+	#menu div {
+		display: inline-block;
+		vertical-align: top;
+	}
+	#menu .menu {
+		padding: 2px 10px;
+		visibility: hidden;
+	}
+	.sound-on {
+		background-image: url('../media/soundOn.png');
+		background-repeat: no-repeat;
+	}
+	.sound-off {
+		background-image: url('../media/soundOff.png');
+		background-repeat: no-repeat;
+	}
+	.sound, .sound a {
+		width: 30px;
+		height: 25px;
+		display: block;
+	}
+
+/* Ingame Menu */
+#ingame-menu {
+	z-index: 7;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	text-align: center;
+	display: none;
+}
+	.ingame-background {
+		opacity:0.6;
+		filter:alpha(opacity=60);
+		-moz-opacity:0.6;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width:100%;
+		height: 100%;
+		background-color: #333;
+	}
+	#ingame-menu ul {
+		position: relative;
+		top: 0;
+		left: 0;
+		margin: 70px auto;
+	}
+	#ingame-menu li {
+		margin: 40px 0;
+		font-size: 33px;
+		font-size: 2.0625rem;
+	}
+	.game-over {
+		visibility: hidden;
+		text-decoration: none;
+	}
+
+/* Main Menu */
+#main-menu {
+	background: url('../media/main-screen.png');
+	z-index: 4;
+}
+	#main-menu li {
+		margin: 20px 0;
+		font-size: 33px;
+		font-size: 2.0625rem;
+	}
+
+/* Selection Screen */
+#selection-screen {
+	background: url('../media/unit-select.png');
+	background-position: 0px -38px;
+}
+	.points {
+		position: absolute;
+		right: 20px;
+	}
+
+	.help, #help {
+		display: inline-block;
+		width: 12px;
+		height: 12px;
+		line-height: 12px;
+		position: relative;
+	}
+	.help {
+		border: 1px solid black;
+		border-radius: 9px;
+		left: 0px;
+		top: -6px;
+		background: white;
+	}
+	#help {
+		font-size: 11px;
+		font-size: .6875rem;
+		left: 0px;
+		top: -2px;
+		color: black;
+		font-weight: bold;
+		text-shadow: 0 0;
+	}
+	.help-menu {
+		display: none;
+		position: absolute;
+		top: 30px;
+		right: 145px;
+		width: 220px;
+		font-size: 12px;
+		font-size: .75rem;
+		background: #333;
+		padding: 5px;
+		border: 2px solid black;
+	}
+	.unit-wrapper {
+		width: 50%;
+		padding-left: 50%;
+		margin-top: 95px;
+	}
+		.unit-wrapper li {
+			height: 50px;
+			width: 50px;
+			margin: 25px;
+			background-color: white;
+			display: inline-block;
+		}
+			.earthen .unit {
+				background: url('../media/units.png') no-repeat 0 0;
+				background-size: 1050px 50px;
+			}
+			.unit a {
+				width: 50px;
+				height: 50px;
+				display: block;
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				box-sizing: border-box;
+			}
+
+		.earthen .one {
+			background-position: -150px;
+		}
+		.earthen .two {
+			background-position: -300px;
+		}
+		.earthen .three {
+			background-position: -450px;
+		}
+		.earthen .four {
+			background-position: -600px;
+		}
+		.earthen .five {
+			background-position: -750px;
+		}
+		.earthen .six {
+			background-position: -900px;
+		}
+	.modify-count {
+		overflow: hidden;
+		height: 30px;
+		position: relative;
+		left: -190px;
+		top: 35px;
+		visibility: hidden;
+	}
+		.modify-count li {
+			display: inline-block;
+			font-size: 55px;
+			font-size: 3.4375rem;
+			margin:0 40px;
+		}
+		.modify-count a {
+			position: relative;
+			height: 30px;
+			display: block;
+			line-height: 30px;
+		}
+		.modify-count.special-padding {
+			top: 105px;
+		}
+		#subtract {
+			top: -5px;
+		}
+		#done {
+			position: relative;
+			top: 7px;
+			left: 257px;
+			font-size: 33px;
+			font-size: 2.0625rem;
+		}
+	.confirm, .no-units {
+		border: 2px solid black;
+		width: 210px;
+		height: 100px;
+		margin: 0 auto;
+		position: relative;
+		top: -50%;
+		background: #333;
+		padding: 10px;
+		display: none;
+	}
+		.confirm ul {
+			margin-top: 50px;
+		}
+		.confirm li {
+			display: inline-block;
+			margin: 0 20px;
+		}
+		#confirm {
+			font-size: 20px;
+			font-size: 1.25rem;
+		}
+	#ok {
+		display: block;
+		margin-top: 25px;
+		font-size: 20px;
+		font-size: 1.25rem;
+	}
+
+/* How to Play Screen */
+#how-to-screen {
+	background: url('../media/how-to-play.png'), url('../media/grass.png');
+	background-size: 800px,auto;
+	background-repeat: no-repeat, repeat;
+	background-position: left bottom, 0;
+}
+	#how-to-screen div, .back, .select-back, .end-turn {
+		position: absolute;
+	}
+	.move-range {
+		top: 127px;
+		left: 177px;
+	}
+	.attack-range {
+		top: 277px;
+		left: 175px;
+	}
+	.active-unit {
+		top: 317px;
+		left: 182px;
+		font-size: 14px;
+		font-size: .875rem;
+	}
+	.health-bar {
+		left: 199px;
+		top: 372px;
+		font-size: 12px;
+		font-size: .75rem;
+	}
+	.back, .select-back {
+		bottom: 0;
+		left: 3px;
+		font-size: 33px;
+		font-size: 2.0625rem;
+	}
+	.end-turn {
+		bottom: 0;
+		left: 3px;
+		font-size: 33px;
+		font-size: 2.0625rem;
+	}
+	.move-here {
+		left: 589px;
+		top: 228px;
+	}
+	.attack-here {
+		left: 767px;
+		top: 397px;
+	}
+	.description-choose {
+		left: 40px;
+	}
+	.description-order {
+		top: 100px;
+		left: 292px;
+	}
+	.description-move {
+		top: 134px;
+		left: 528px;
+		width: 260px;
+	}
+	.description-win {
+		top: 487px;
+		left: 450px;
+		width: 220px;
+	}
+	.note-players {
+		width: 200px;
+		right: 10px;
+		top: 200px;
+	}
+
+/* Credits Screen */
+#credits-screen {
+	background: url('../media/credits.png');
+}
+	.credit {
+		font-weight: bold;
+		padding-top: 7px;
+	}
+	.creditee {
+		padding-bottom: 7px;
+	}
+
+/* Unit Panel */
+#unit-panel {
+	z-index: 10;
+	border: 3px solid black;
+	position: relative;
+	top: 174px;
+	left: 241px;
+	display: none;
+	padding: 10px;
+	background-color: #333;
+	font-size: 16px;
+	font-size: 1rem;
+	width: 136px;
+}
+	#unit-panel.ingame {
+		top: 0;
+		left: 0;
+	}
+	.name {
+		text-align: center;
+		padding-bottom: 5px;
+	}
+	.unit-pic {
+		background: url('../media/units.png') no-repeat 0 0;
+		height: 50px;
+		width: 50px;
+		margin: 0 auto;
+		background-color: white;
+		background-size: 1050px 50px;
+	}
+	.stats-wrapper {
+		overflow: hidden;
+	}
+	.stats-wrapper div {
+		display: inline-block;
+	}
+	.stat-name {
+		width: 91px;
+	}
+	.stat {
+		width: 45px;
+		text-align: right;
+	}
+	.special {
+		margin-top: 15px;
+	}
+
+#endTurn {
+	z-index: 5;
+	visibility: hidden;
+}
+
+html,body {
+	background-color: #333;
+	color: #fff;
+	font-family: helvetica, arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	font-size: 12pt;
+}
+
+canvas {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	z-index: 1;
+}
+#pathfinding {
+	display: none;
+}
+.attacking {
+	cursor: url(media/attack.png) 10 10, default;
+}
+.moving {
+	cursor: url(media/move.png) 10 10, default;
+}
+.healing {
+	cursor: url(media/heal.png) 10 10, default;
+}

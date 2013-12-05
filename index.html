@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Impact Game</title>
+	<link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
+	<style type="text/css">
+		html,body {
+			background-color: #333;
+			color: #fff;
+			font-family: helvetica, arial, sans-serif;
+			margin: 0;
+			padding: 0;
+			font-size: 12pt;
+		}
+
+		canvas {
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			margin: auto;
+			z-index: 1;
+		}
+		#pathfinding {
+			display: none;
+		}
+		.attacking {
+			cursor: url(media/attack.png) 10 10, default;
+		}
+		.moving {
+			cursor: url(media/move.png) 10 10, default;
+		}
+		.healing {
+			cursor: url(media/heal.png) 10 10, default;
+		}
+	</style>
+</head>
+<body>
+	<!-- Canvas wrapper -->
+	<div class="canvas-wrapper">
+		<div class="border"></div>
+		<canvas id="canvas"></canvas>
+		<canvas id="pathfinding" height="576"  width="1024"></canvas>
+		<div id="unit-panel">
+			<div class="name"></div>
+			<div class="unit-pic"></div>
+			<hr>
+			<div class="stats-wrapper">
+				<ul>
+					<li><div class="stat-name">Health:</div><div class="stat health"></div></li>
+					<li><div class="stat-name">Attack:</div><div class="stat attack"></div></li>
+					<li><div class="stat-name">Defense:</div><div class="stat defense"></div></li>
+					<li><div class="stat-name">Damage:</div><div class="stat damage"></div></li>
+					<li><div class="stat-name">Range:</div><div class="stat range"></div></li>
+					<li><div class="stat-name">Movement:</div><div class="stat movement"></div></li>
+					<li><div class="stat-name">Speed:</div><div class="stat speed"></div></li>
+					<li><div class="stat-name">Cost:</div><div class="stat cost"></div></li>
+					<li><div class="special"></div></li>
+				</ul>
+			</div>
+		</div>
+		<div id="menu">
+			<div class="menu"><a href="#" class="ingame-menu">Menu</a></div>
+			<div class="sound sound-on"><a href="#" id="sound"></a></div>
+		</div>
+		<a href="#" id="endTurn" class="end-turn" onclick="ig.game.endTurn(); return false;">End Turn</a>
+	</div>
+	<!-- End Canvas wrapper -->
+
+	<!-- Menus -->
+	<div id="main-menu">
+		<div class="wrapper">
+			<h1>Chronos</h1>
+			<ul>
+				<li><a href="#" id="play">Play</a></li>
+				<li><a href="#" id="how-to-play">How to Play</a></li>
+				<li><a href="#" id="credits">Credits</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<div id="how-to-screen">
+		<h2>How to Play</h2>
+		<div class="move-range">Move range</div>
+		<div class="attack-range">Attack range</div>
+		<div class="health-bar">Health</div>
+		<div class="active-unit">Active unit</div>
+		<div class="move-here">Move</div>
+		<div class="attack-here">Attack</div>
+		<div class="description-choose">1. Choose your army</div>
+		<div class="description-order">2. Units active in order of speed</div>
+		<div class="description-move">3. Move your units into position to attack the opposing player</div>
+		<div class="description-win">4. Defeat all of your opponents units to win</div>
+		<div class="note-players"><strong>NOTE:</strong> This game is currently only playable by 2 human players playing on the same computer (hotseat). There is no Computer player or networking.</div>
+		<a href="#" class="back">Back</a>
+	</div>
+
+	<div id="selection-screen">
+		<h2>Army Selection</h2>
+		<div class="points">
+			<div class="help"><a href="#" id="help">i</a></div> Points: <span class="current-points">0</span> / <span class="total-points"></span>
+		</div>
+		<div class="player-select">
+			<h3>Player <span class="player-number">1</span>, choose your army</h3>
+		</div>
+		<div class="unit-wrapper earthen">
+			<ul>
+				<li><div class="unit zero" data-id="0"><a href="#" class="select-unit">&nbsp;</a></div><div class='num-purchased'>0</div></li>
+				<li><div class="unit one" data-id="1"><a href="#" class="select-unit">&nbsp;</a></div><div class='num-purchased'>0</div></li>
+				<li><div class="unit two" data-id="2"><a href="#" class="select-unit">&nbsp;</a></div><div class='num-purchased'>0</div></li>
+				<li><div class="unit three" data-id="3"><a href="#" class="select-unit">&nbsp;</a></div><div class='num-purchased'>0</div></li>
+				<li><div class="unit four" data-id="4"><a href="#" class="select-unit">&nbsp;</a></div><div class='num-purchased'>0</div></li>
+				<li><div class="unit five" data-id="5"><a href="#" class="select-unit">&nbsp;</a></div><div class='num-purchased'>0</div></li>
+				<li><div class="unit six" data-id="6"><a href="#" class="select-unit">&nbsp;</a></div><div class='num-purchased'>0</div></li>
+			</ul>
+		</div>
+		<div class="modify-count">
+			<ul>
+				<li><a href="#" id="subtract">-</a></li>
+				<li><a href="#" id="add">+</a></li>
+			</ul>
+		</div>
+		<a href="#" id="done">Done</a>
+		<a href="#" class="select-back">Back</a>
+		<div class="confirm">
+			Are you sure you are done?
+			<ul>
+				<li><a href="#" id="cancel">Cancel</a></li>
+				<li><a href="#" id="confirm">Confirm</a></li>
+			</ul>
+		</div>
+		<div class="no-units">
+			Player <span class="player">1</span> does not have any units in their army. Please choose a unit to play.
+			<a href="#" id="ok">Ok</a>
+		</div>
+		<div class="help-menu">
+			Each unit costs points to add to your army. You cannot have more units in your army than the maximum army size.
+		</div>
+	</div>
+
+	<div id="ingame-menu">
+		<div class="ingame-background"></div>
+		<ul>
+			<li><h2 class="game-over">Player <span class="player-number">1</span> wins!</h2></li>
+			<li><a href="#" id="continue">Continue</a></li>
+			<li><a href="#" id="restart">Restart</a></li>
+			<li><a href="#" id="goto-main-menu">Main Menu</a></li>
+		</ul>
+	</div>
+	<div id="credits-screen">
+		<h2>Credits</h2>
+		<ul>
+			<li class="credit">Developer</li>
+			<li class="creditee"><a href="http://sklambert.com">Steven Lambert</a></li>
+			<li class="credit">Tester</li>
+			<li class="creditte"><a href="http://midnightbyte.com/">Matt Barton</a></li>
+			<li class="credit">Images</li>
+			<li class="creditee"><a href="http://opengameart.org/content/solar-system">ac3raven</a></li>
+			<li class="creditee"><a href="http://www.wallpaperpimper.com/wallpaper/download-wallpaper-Inside_Spaceship-size-1024x768-id-14660.htm">Thomas Vincent</a></li>
+			<li class="creditee"><a href="http://opengameart.org/content/space-backdrop">beren77</a></li>
+			<li class="credit">Audio</li>
+			<li class="creditee"><a href="http://opengameart.org/content/another-space-background-track">yd</a></li>
+			<li class="creditee"><a href="http://www.nosoapradio.us/">dst</a></li>
+			<li class="credit">Tilesets</li>
+			<li class="creditee"><a href="http://www.rpgmakervx.net/index.php?showtopic=44067&st=0&p=426286&#entry426286">IceDragon</a></li>
+			<li class="creditee"><a href="http://s872.photobucket.com/user/Mollombo/media/Strooper_zps0d74aa84.png.html">Kazzador</a></li>
+			<li class="creditee"><a href="http://www.rpgmakervx.net/lofiversion/index.php/t9147.html">Aden Sickle</a></li>
+			<li class="creditee"><a href="http://forums.rpgmakerweb.com/index.php?/topic/9843-grannys-lists-modern-and-futuristic-resources/">Matsuo Kaito</a></li>
+			<li class="creditee"><a href="http://s1250.photobucket.com/user/supercow300/media/tank2_zps9e34ac9d.png.html">supercow300</a></li>
+		</ul>
+		<a href="#" class="back">Back</a>
+	</div>
+	<!-- End menus -->
+
+	<!-- Scripts -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script>
+		/* Load jQuery from a local file if for some reason it failed to load from the CDN */
+		if (typeof jQuery == 'undefined') {
+		    document.write(unescape("%3Cscript src='jquery-1.8.3.min.js' type='text/javascript'%3E%3C/script%3E"));
+		}
+	</script>
+	<script type="text/javascript" src="priority_queue.js"></script>
+	<script type="text/javascript" src="game.min.js"></script>
+	<!-- End scripts -->
+</body>
+</html>
